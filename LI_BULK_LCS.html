@@ -1,0 +1,326 @@
+<head>
+    <title>Loading Instruction - {{ truck_name }}</title>
+    <link rel=File-List href="3.%20Loading%20Instruction_files/filelist.xml">
+
+    <style>
+        .table-address {
+            padding: 0px;
+            color: black;
+            font-size: 8.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            vertical-align: middle;
+            border: 0pt solid black;
+            white-space: nowrap;
+        }
+        .table-truck_details {
+            padding: 0px;
+            color: black;
+            font-size: 11.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            vertical-align: bottom;
+            white-space: nowrap;
+            border: none;
+            border-collapse:collapse;
+            table-layout:fixed;
+            width:521pt
+        }
+        .celltext-black {
+            padding: 0px;
+            color: black;
+            font-size: 8.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            vertical-align: middle;
+            border: .5pt solid black;
+            white-space: nowrap;
+
+        }
+        .celltext-red {
+            padding: 0px;
+            color: red;
+            font-size: 8.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            vertical-align: middle;
+            border: .5pt solid black;
+            white-space: nowrap;
+        }
+        .celltext-bod_address {
+            padding: 0px;
+            color: black;
+            font-size: 8.0pt;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        .bod-header {
+            padding: 0px;
+            color: black;
+            font-size: 11.0pt;
+            font-weight: 700;
+            font-style: normal;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            vertical-align: middle;
+            border-top: .5pt solid black;
+            border-right: .5pt solid black;
+            border-bottom: .5pt solid black;
+            border-left: .5pt solid black;
+            white-space: nowrap;
+        }
+        .bold-underline {
+            padding: 5px;
+            color: black;
+            font-size: 8.0pt;
+            font-weight: 700;
+            font-style: normal;
+            text-decoration: underline;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+        td {
+            padding-left: 2pt !important;
+            padding-right: 2pt !important;
+        }
+        @page dispatch-page {
+            size: A4;
+            margin-left: 10pt;
+            margin-top: 10pt;
+            @bottom-center {
+                background-image: url('footer.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                content: '';
+                margin-top: -12pt;
+                text-align: center;
+                margin-left: 22pt;
+                height: 85px;
+                width: 665px;
+            }
+        }
+        .dispatch-page {
+            page: dispatch-page;
+            break-after: page;
+            }
+        .bottom-border td {
+            border-bottom: 1px solid #000000;
+        }
+        .wrap-text td {
+            white-space: normal; /* Allows the text to wrap */
+            word-wrap: break-word; /* Wraps long words onto the next line */
+        }
+    </style>
+</head>
+<body>
+<div class="dispatch-page" >
+    <!--Top Picture and Address-->
+    <table class="table-address">
+        <col style='width:225pt'>
+        <col style='width:186pt'>
+
+        <tr style='height:15.75p; width:521t'>
+            <td rowspan=3 style="text-align: left; vertical-align: top;">
+                <img src="data:image/jpeg;base64,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"
+                     style="width: 140px;"/></td>
+            <td></td>
+            <td class=bold-underline>CONTACT DETAILS:</td>
+        </tr>
+        <tr style='height:15.75pt'>
+            <td></td>
+            <td class=celltext-bod_address>TEL: &emsp; &emsp;+243830543039</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class=celltext-bod_address>EMAIL:&emsp;
+                <a href="mailto:OLOGDOCFIX@kamoacopper.com"><span style='font-size:7.5pt;font-family:Arial, sans-serif;'>OLOGDOCFIX@kamoacopper.com</span></a>
+            </td>
+        </tr>
+        <tr style='height:15.75pt'>
+            <td class=celltext-bod_address>1148-6 Avenue de la liberation&nbsp;</td>
+            <td></td>
+            <td class=celltext-bod_address>VAT: &emsp; &emsp;A0901048A</td>
+        </tr>
+        <tr style='height:15.75pt'>
+            <td class=celltext-bod_address>Quartier Golf les Battants Commune de Lubumbashi</td>
+            <td></td>
+            <td class=celltext-bod_address>REG NO.: &emsp;6-118-N37233J</td>
+        </tr>
+        <tr class="bottom-border">
+         <td colspan="5" class="celltext-bod_address" style="vertical-align: top; padding: 2pt;">Lubumbashi, Province du Haut-Katanga, DRC&nbsp;</td>
+        </tr>
+    </table>
+    <!--Truck Details-->
+    <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:575pt'>
+        <col style='width:133pt'>
+        <col style='width:144pt'>
+        <col style='width:8pt'>
+        <col style='width:133pt'>
+        <col style='width:144pt'>
+
+        <tr style='height:5pt'>
+            <tr style='height:14.25pt'>
+            <td class=celltext-black> TRUCK UNIQUE ID:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{truck_name}}&nbsp;</td>
+            <td></td>
+            <td class=celltext-black>LSP NAME:&nbsp;</td>
+
+            <td class=celltext-red style='border-left:none'>{{lsp_name}}&nbsp;</td>
+        </tr>
+         <tr>
+            <tr style='height:14.25pt'>
+            <td class=celltext-black>LOT NO.:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{bulk_lot_id}}&nbsp;</td>
+            <td></td>
+            <td class=celltext-black>DELIVER TO:&nbsp;</td>
+
+            <td class=celltext-red style='border-left:none'>LCS</td>
+        </tr>
+        <tr style='height:5pt'>
+            <td></td>
+        </tr>
+        </tr>
+
+            <td colspan=5 class=bod-header style='border: 1.0pt solid black'>LOAD INSTRUCTION BULK</td>
+        </tr>
+        <tr style='height:5pt'>
+            <td colspan=5></td>
+        </tr>
+        <tr style='height:14.25pt'>
+            <td class=celltext-black> TRUCK LICENSE NO.:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{truck_reg}}&nbsp;</td>
+            <td></td>
+            <td class=celltext-black> DRIVER'S NAME:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{driver_name}}&nbsp;</td>
+        </tr>
+        <tr style='height:14.25pt'>
+            <td class=celltext-black>TARE MASS:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{tare_mass}}&nbsp;</td>
+            <td></td>
+            <td class=celltext-black> DRIVER'S PASSPORT NO.:&nbsp;</td>
+            <td class=celltext-red style='border-left:none'>{{passport_nr}}&nbsp;</td>
+             <tr style='height:14.25pt'>
+            <td class=celltext-black>TRUCK CAPACITY:</td>
+            <td class=celltext-red style='border-left:none'>{{truck_size}}&nbsp;</td>
+        <td></td>
+        <td class=celltext-black style='border-left'>DRIVER'S LICENSE NO.:</td>
+         <td class=celltext-red style='border'>{{licence_nr}}</td>
+            <td></td>
+        <tr style='height:14.25pt'>
+            <td></td>
+            <td></td>
+         <td></td>
+        <td class=celltext-black style='border-left'>DRIVER'S CONTACT NO.:</td>
+         <td class=celltext-red style='border'>{{driver_no}}</td>
+    </tr>
+    </tr>
+        <tr style='height:14.25pt'>
+            <td></td>
+        <tr style='height:14.25pt'>
+            <td class=celltext-black> LOADING PLACE:</td>
+            <td class=celltext-red style='border-left:none'>Kamoa-Kakula DRC</td>
+            <td></td>
+        </tr>
+        <tr style='height:14.25pt'>
+            <td class=celltext-black>GOODS TO LOAD:</td>
+            <td class=celltext-red style='border-left:none'>Copper Conc. Bagged</td>
+            <td></td>
+        </tr>
+
+        <tr style='height:14.25pt'>
+            <td></td>
+        </tr>
+        <tr style='height:14.25pt'>
+            <td class=celltext-black>DATE & TIME STAMP:</td>
+            <td class=celltext-red>{{#format_timestamp}}{{ gross_timestamp }}{{/format_timestamp}}</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td style="font-size: 9pt;">Recorded when truck tare mass is taken</td>
+        </tr>
+        <tr style=';height:14.25pt'>
+            <td></td>
+        </tr>
+    </table>
+    <!--QR Code-->
+    <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:521pt'>
+        <col style='width:20pt'>
+        <col style='width:80pt'>
+        <col style='width:80pt'>
+        <col style='width:80pt'>
+
+        <tr>
+            <td></td>
+            <td class=bod-header >TRUCK UNIQUE ID QR CODE:</td>
+            <td></td>
+            <td class=bod-header >LOT NO QR CODE:</td>
+        </tr>
+        <tr style='height: 50pt'>
+            <td></td>
+            <td class=celltext-black style='vertical-align:middle; text-align: center '>
+                <img src="{{#qrcode}}{{truck_name}}{{/qrcode}}" style="width: 100pt;" alt="QR CODE IMAGE"/>
+            </td>
+            <td></td>
+            <td class=celltext-black style='vertical-align:middle; text-align: center '>
+                <img src="{{#qrcode}}{{bag_lot_id}}{{/qrcode}}" style="width: 100pt;" alt="QR CODE IMAGE"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class=bod-header style="font-size: 12pt; color: red">{{ truck_name }}</td>
+            <td></td>
+            <td class=bod-header style="font-size: 12pt; color: red">{{ bag_lot_id }}</td>
+        </tr>
+        <tr style=';height:14.25pt'>
+            <td></td>
+        </tr>
+    </table>
+    <!--Signatures-->
+    <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:575pt'>
+        <col style='width:100pt'>
+        <col style='width:100pt'>
+        <col style='width:40pt'>
+        <col style='width:55pt'>
+        <col style='width:125pt'>
+
+        <tr style=';height:40pt'>
+            <td class=celltext-black style='text-align: center;'>DRIVER SIGNATURE:</td>
+            <td colspan=2 class=celltext-black>&nbsp;</td>
+            <td></td>
+            <td class=celltext-black rowspan="3" style='width:200pt; text-align: center;height:120pt'>SECURITY SIGNATURE/STAMP:</td>
+            <td rowspan="3" class=celltext-black>&nbsp;</td>
+        </tr>
+        <tr style='height:40pt'>
+            <td class=celltext-black style='text-align: center;'>DRIVER PRINT NAME:</td>
+            <td colspan=2 class=celltext-black>&nbsp;</td>
+            <td></td>
+        </tr style='height:100pt'>
+            <tr><td class=celltext-black style='text-align center;height:40pt'>OPERATOR SIGNATURE:</td>
+            <td colspan=2 rowspan=3 class=celltext-black>&nbsp;</td>
+        </tr>
+
+    </table>
+     <tr style="font-size: 9pt">
+            *Confirming weighbridge measurement complete
+        </tr>
+</div>
+</body>

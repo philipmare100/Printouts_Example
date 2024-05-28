@@ -1,0 +1,372 @@
+<head>
+   <title>Bill of Dispatch - {{ truck_name }}</title>
+   <link rel=File-List href="3.%20Bill%20of%20Dispatch%20(with%20net,%20gross%20and%20tare%20masses)_files/filelist.xml">
+
+
+   <style>
+       .table-address {
+           padding: 0px;
+           color: black;
+           font-size: 8.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: left;
+           vertical-align: middle;
+           border: 0pt solid black;
+           white-space: nowrap;
+           border-collapse: collapse;
+       }
+       .table-truck_details {
+           padding: 0px;
+           color: black;
+           font-size: 11.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           vertical-align: bottom;
+           white-space: nowrap;
+           border: none;
+           border-collapse:collapse;
+           table-layout:fixed;
+           width:521pt
+       }
+       .celltext-black {
+           padding: 0px;
+           color: black;
+           font-size: 8.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: left;
+           vertical-align: middle;
+           border: .5pt solid black;
+           white-space: nowrap;
+       }
+       .celltext-red {
+           padding: 0px;
+           color: red;
+           font-size: 8.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: left;
+           vertical-align: middle;
+           border: .5pt solid black;
+           white-space: nowrap;
+       }
+       .celltext-bod_address {
+           padding: 0px;
+           color: black;
+           font-size: 8.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           vertical-align: middle;
+           white-space: nowrap;
+       }
+       .celltext-bag_header {
+           padding: 0px;
+           color: black;
+           font-size: 8.0pt;
+           font-weight: 700;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: center;
+           vertical-align: middle;
+           border-top: .5pt solid black;
+           border-right:.5pt solid black;
+           border-bottom: .5pt solid black;
+           border-left: .5pt solid black;
+           white-space: normal;
+       }
+       .celltext-bag_info {
+           padding: 0px;
+           color: red;
+           font-size: 8.0pt;
+           font-weight: 400;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: center;
+           vertical-align: middle;
+           border-top: .5pt solid black;
+           border-right: .5pt solid black;
+           border-bottom: .5pt solid black;
+           border-left: .5pt solid black;
+           white-space: nowrap;
+       }
+       .bod-header {
+           padding: 0px;
+           color: black;
+           font-size: 11.0pt;
+           font-weight: 700;
+           font-style: normal;
+           text-decoration: none;
+           font-family: Arial, sans-serif;
+           text-align: center;
+           vertical-align: middle;
+           border-top: .5pt solid black;
+           border-right: .5pt solid black;
+           border-bottom: .5pt solid black;
+           border-left: .5pt solid black;
+           white-space: nowrap;
+       }
+       .bold-underline {
+           padding: 5px;
+           color: black;
+           font-size: 8.0pt;
+           font-weight: 700;
+           font-style: normal;
+           text-decoration: underline;
+           font-family: Arial, sans-serif;
+           text-align: left;
+           vertical-align: middle;
+           white-space: nowrap;
+       }
+       td {
+           padding-left: 2pt !important;
+           padding-right: 2pt !important;
+       }
+       @page dispatch-page {
+           size: A4;
+           margin-left: 10pt;
+           margin-top: 10pt;
+       }
+       .dispatch-page {
+           page: dispatch-page;
+           break-after: page;
+       }
+   </style>
+</head>
+<body>
+<div class="dispatch-page">
+   <!--Top Picture and Address and QR-->
+   <table class="table-address">
+       <col style='width:225pt'>
+       <col style='width:186pt'>
+       <col style='width:150pt'>
+       <tr style='height:15.75pt'>
+           <td rowspan=3 style="text-align: left; vertical-align: top;">
+               <img src="data:image/png;base64,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"
+                              style="width: 140px;"/></td>
+           <td class=bold-underline>CONTACT DETAILS:</td>
+           <td class=bold-underline style="text-align: center; border: .5pt solid black">LOT NO. QR CODE:</td>
+       </tr>
+       <tr style='height:15.75pt'>
+           <td class=celltext-bod_address>TEL: &emsp; &emsp;+273830543055</td>
+           <td rowspan=5 style="text-align: center; vertical-align: top; border: .5pt solid black; padding: 0px;">
+               <img src="{{#qrcode}}{{bag_lot_id}}{{/qrcode}}" style="width: 95pt"/>
+           </td>
+       </tr>
+       <tr>
+           <td class=celltext-bod_address>EMAIL:&emsp;
+               <a href="mailto:ptintout@plant.com.cn "><span style='font-size:7.5pt;font-family:Arial, sans-serif;'>OBLM@EmailDomain.com</span></a>
+           </td>
+       </tr>
+       <tr style='height:15.75pt'>
+           <td class=celltext-bod_address>Plant Address Required &nbsp;</td>
+           <td class=celltext-bod_address>VAT: &emsp; &emsp;Company Vat</td>
+       </tr>
+       <tr style='height:15.75pt'>
+           <td class=celltext-bod_address>Company Street Name</td>
+           <td class=celltext-bod_address>REG NO.: &emsp;Registration</td>
+       </tr>
+       <tr>
+           <td class=celltext-bod_address style="vertical-align: top; padding: 2pt">Province, Country and Zip Code &nbsp;</td>
+           <td></td>
+       </tr>
+       <tr style='height:5pt'>
+           <td></td>
+       </tr>
+   </table>
+   <!--Truck Details-->
+   <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:521pt'>
+       <col style='width:135pt'>
+       <col style='width:146pt'>
+       <col style='width:135pt'>
+       <col style='width:146pt'>
+
+
+       <tr style='height:15.75pt; border: 1pt solid black'>
+           <td colspan=4 class=bod-header>BILL OF DISPATCH (BAGS EXPORT)</td>
+       </tr>
+       <tr style='height:5pt'>
+           <td colspan=7></td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>INVOICE NO.:&nbsp;</td>
+           <td class=celltext-red style='border-left:none'>CP NAME REQUIRED&nbsp;</td>
+           <td class=celltext-black>LOT NO.:&nbsp;</td>
+           <td class=celltext-red style='border-left:none'>{{ bag_lot_name }}&nbsp;</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>TRUCK ID:&nbsp;</td>
+           <td class=celltext-red style='border-left:none'>{{ truck_name }}&nbsp;</td>
+           <td class=celltext-black>SAMPLE ID:&nbsp;</td>
+           <td class=celltext-red style='border-left:none'>{{ bag_lot_name }}&nbsp;</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>ISSUE DATE:</td>
+           <td class=celltext-red style='border-left:none'> NA </td>
+           <td class=celltext-black>HC Stockpile ID:</td>
+           <td class=celltext-red style='border-left:none'>NA</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>GROSS TIMESTAMP:</td>
+           <td class=celltext-red style='border-left:none'>{{#format_timestamp}}{{ gross_timestamp }}{{/format_timestamp}}</td>
+           <td class=celltext-black>DRIVER'S NAME:</td>
+           <td class=celltext-red style='border-left:none'>{{ driver_name }}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>LOADING PLACE:</td>
+           <td class=celltext-black style='border-left:none'>MMS Office&nbsp;</td>
+           <td class=celltext-black>DRIVER'S PASSPORT NO.:</td>
+           <td class=celltext-red style='border-left:none'>{{passport_nr}}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>GOODS:</td>
+           <td class=celltext-black style='border-left:none'>Uranium. Drums</td>
+           <td class=celltext-black>DRIVER'S LICENSE NO.:</td>
+           <td class=celltext-red style='border-left:none'>{{license_no}}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>BUYER:</td>
+           <td class=celltext-red style='border-left:none'>{{buyer}}</td>
+           <td class=celltext-black>TRUCK/HORSE LICENSE NO.:</td>
+           <td class=celltext-red style='border-left:none'>{{truck_reg}}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>CONSIGNEE 1:</td>
+           <td class=celltext-red style='border-left:none'>NA</td>
+           <td class=celltext-black>TRAILER 1 LICENSE NO.:</td>
+           <td class=celltext-red style='border-left:none'>{{trailer_1_licence_nr}}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>CONSIGNEE 2:</td>
+           <td class=celltext-red style='border-left:none'>NA</td>
+           <td class=celltext-black>TRAILER 2 LICENSE NO.:</td>
+           <td class=celltext-black style='border-left:none'>{{trailer_2_licence_nr}}</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>FINAL DESTINATION:</td>
+           <td class=celltext-red style='border-left:none'>{{truck_bag_destination}}</td>
+           <td class=celltext-black>INSURANCE COVER:</td>
+           <td class=celltext-black style='border-left:none'>Yes</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>LSP NAME:</td>
+           <td class=celltext-red style='border-left:none'>{{lsp_name }}</td>
+           <td class=celltext-black>EXPORT LICENSE:</td>
+           <td class=celltext-black style='border-left:none'>Calc</td>
+       </tr>
+       <tr style=';height:5pt'>
+           <td></td>
+       </tr>
+   </table>
+   <!--Item Details-->
+   <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:521pt'>
+       <col style='width:0pt'>
+       <col style='width:25pt'>
+       <col style='width:60pt'>
+       <col style='width:40pt'>
+       <col style='width:70pt'>
+       <col style='width:50pt'>
+       <col style='width:30pt'>
+       <col style='width:75.6pt'>
+       <col style='width:30pt'>
+       <col style='width:75.6pt'>
+       <col style='width:105.6pt'>
+
+
+       <tr style='height:14.25pt'>
+           <td colspan=2 class=celltext-bag_header>DRM NO.:
+           <td colspan=2 class=celltext-bag_header>DRM NO.:</td>
+           <td colspan=2 class=celltext-bag_header>DRM SEAL NO.:</td>
+           <td colspan=2 class=celltext-bag_header>TARE WEIGHT (KG):</td>
+           <td colspan=2 class=celltext-bag_header>GROSS WEIGHT (KG):</td>
+           <td colspan=1 class=celltext-bag_header>NET WEIGHT (KG):</td>
+       </tr>
+
+        {{#DRUM}}
+       <tr style='height:14.25pt'>
+           <td colspan=2 class=celltext-bag_info>{{#drum_index}}("{{drum_id}}","{{DRUM}}"){{/drum_index}}</td>
+           <td colspan=2 class=celltext-bag_info>{{drum_id}}</td>
+           <td colspan=2 class=celltext-bag_info>NA</td>
+           <td colspan=2 class=celltext-bag_info>{{ drum_tare_mass }}</td>
+           <td colspan=2 class=celltext-bag_info>{{ drum_gross_mass }}</td>
+           <td colspan=2 class=celltext-bag_info>{{ drum_gross_mass }}</td>
+       </tr>
+       {{/DRUM}}
+
+
+       <tr style=';height:14.25pt'>
+           <td colspan=6 class=celltext-black style='text-align: left; font-weight: bold;'>NET WEIGHT TOTAL:</td>
+           <td colspan=4 > </td>
+           <td colspan=1 class=celltext-bag_info style='font-weight: bold'>{{#round}}{{ nett_weight }}{{/round}}</td>
+       </tr>
+       <tr style=';height:14.25pt'>
+           <td colspan=6 class=celltext-black style='text-align: left;font-weight: bold'>TOTAL (EXCLUDING COMPOSITE SAMPLE MASS):</td>
+           <td colspan=4 > </td>
+           <td colspan=1 class=celltext-bag_info style='font-weight: bold'>{{#round}}{{ nett_weight_minus_sample }}{{/round}}</td>
+       </tr>
+
+
+       <tr style=';height:5pt'>
+           <td></td>
+       </tr>
+   </table>
+   <!--Truck Weights & Signatures-->
+   <table class=table-truck_details style='border-collapse:collapse;table-layout:fixed;width:521pt'>
+       <col style='width:105pt'>
+       <col style='width:120pt'>
+       <col style='width:30pt'>
+       <col style='width:50pt'>
+       <col style='width:126.2pt'>
+       <col style='width:130.6pt'>
+
+
+       <tr style='height:20pt'>
+           <td colspan=1 class=celltext-bag_header style='text-decoration: underline;' >CHECK:</td>
+           <td colspan = 3 ></td>
+           <td rowspan=2 class=celltext-bag_header style='text-decoration: underline;'>INVOICE WEIGHT</td>
+           <td rowspan=2 class=celltext-bag_header style='text-decoration: underline;'>{{bag_lot_invoice_mass}}</td>
+       <tr>
+         <td></td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td colspan=2 class=celltext-bag_header style='text-decoration: underline;'>WEIGHBRIDGE WEIGHT:</td>
+           <td class=celltext-bag_header style='text-decoration: underline;'>UNIT:</td>
+           <td></td>
+       </tr>
+       <tr style=';height:15.0pt'>
+           <td class=celltext-black>GROSS WEIGHT:</td>
+           <td class=celltext-bag_info>{{ gross_mass }}</td>
+           <td class=celltext-black style='text-align: center;'>kg</td>
+           <td></td>
+           <td rowspan=2 class=celltext-black style='width:81pt; text-align: center;'>LOGISTICS OPERATOR SIGN.:</td>
+           <td rowspan=2 class=celltext-black>&nbsp;</td>
+       </tr>
+       <tr style='height:14.25pt'>
+           <td class=celltext-black>TARE WEIGHT:</td>
+           <td class=celltext-bag_info>{{ tare_mass }}</td>
+           <td class=celltext-black style='text-align: center;'>kg</td>
+           <td></td>
+       </tr>
+       <tr style='height:18pt'>
+           <td class=celltext-black style="white-space: normal; ">NET WEIGHT:</td>
+           <td class=celltext-bag_info>{{ nett_mass }}</td>
+           <td class=celltext-black style='text-align: center;'>kg</td>
+           <td></td>
+           <td rowspan=2 class=celltext-black style='border-top:none; text-align: center;'>SECURITY SIGNATURE:</td>
+           <td rowspan=2 class=celltext-black style='width:167pt'>&nbsp;</td>
+       </tr>
+
+</div>
+</body>

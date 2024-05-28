@@ -1,0 +1,44 @@
+{
+  "type_id": "6b2005e2-7a28-4c2a-87e5-5e99b1ae1a39",
+  "type_alias": "TRUCK",
+  "attributes": {
+    "name": "truck_name"
+  },
+  "properties": {
+    "BUYER": "buyer",
+    "TRUCK": "component_name",
+    "LOTNUMBER": "lot_number",
+    "OBLM_TRK_REG": "truck_reg",
+    "OBLM_TRAIL_REG_1": "trailer_1_licence_nr",
+    "OBLM_TRAIL_REG_2": "trailer_2_licence_nr",
+    "OBLM_TARE_MASS_KG": "tare_mass",
+    "OBLM_GROSS_MASS_KG": "gross_mass",
+    "OBLM_NET_MASS_KG": "nett_mass",
+    "OBLM_TARE_TIME": "tare_timestamp",
+    "OBLM_GROSS_TIME": "gross_timestamp",
+    "OBLM_DRIVER_NAME": "driver_name",
+    "OBLM_DRIVER_PP": "passport_nr",
+    "OBLM_DRIVER_NO": "licence_nr",
+    "OBLM_TRK_DEST": "truck_bag_destination"
+  },
+  "component_types": [
+    {
+      "type_id": "85f46415-980b-4561-865b-bd6f36ce3b92",
+      "type_alias": "DRUM",
+      "attributes": {
+        "name": "drum_id"
+      },
+      "properties": {
+        "OBLM_DRM_TARE_MASS": "drum_tare_mass",
+        "OBLM_DRM_GROSS_MASS": "drum_gross_mass",
+        "OBLM_DRM_NET_MASS": "drum_gross_mass"
+      }
+    }
+  ],
+  "functions": {
+    "now_time_utc_plus_2": "now_time",
+    "pretty_format_timestamp": "format_timestamp",
+    "round_number": "round",
+    "get_drum_loc_in_list": "drum_index"
+  }
+}
